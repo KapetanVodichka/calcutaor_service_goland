@@ -28,11 +28,11 @@
 ## Запуск сервиса
 Клонируйте репозиторий:
 ```bash
-git clone https://github.com/username/calc_service.git
+git clone https://github.com/KapetanVodichka/calc_service_goland.git
 ```
 Перейдите в папку с проектом:
 ```bash
-cd calc_service
+cd calcutaor_service_goland
 ```
 
 Запустите сервис:
