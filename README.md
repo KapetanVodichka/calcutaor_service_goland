@@ -10,8 +10,103 @@
 4. В случае ошибки в самом выражении (недопустимые символы, деление на ноль, несбалансированные скобки) возвращает JSON с полем `"error"` и статусом 422.
 5. При любой другой непредвиденной ошибке возвращается JSON с полем `"error"` и статусом 500.
 
-## Установка и запуск
+Сервис принимает POST-запрос на эндпоинт `/api/v1/calculate` с телом вида:
+```json
+{
+  "expression": "2+2*2"
+}
+```
+и возвращает результат вычисления в формате JSON.
 
-1. Склонируйте репозиторий:
-   ```bash
-   git clone https://github.com/username/calc_service.git
+Формат успешного ответа (код 200 OK):
+```json
+{
+  "result": "6"
+}
+```
+## Возможные коды ошибок:
+422 (Unprocessable Entity)
+Если в выражении содержатся недопустимые символы, есть деление на ноль или скобки не сбалансированы.
+Пример:
+
+```bash
+curl --location 'http://localhost:8080/api/v1/calculate' \
+--header 'Content-Type: application/json' \
+--data '{
+  "expression": "2+(3*2"
+}'
+```
+Ответ:
+
+```json
+{
+  "error": "Expression is not valid"
+}
+```
+
+500 (Internal Server Error)
+Любая иная непредвиденная ошибка внутри приложения.
+Пример ответа:
+
+```json
+{
+  "error": "Internal server error"
+}
+```
+
+## Запуск сервиса
+Клонируйте репозиторий:
+```bash
+git clone https://github.com/username/calc_service.git
+```
+Перейдите в папку с проектом:
+```bash
+cd calc_service
+```
+
+Запустите сервис:
+```bash
+go run ./cmd/calc_service/...
+```
+По умолчанию сервер стартует на порту 8080. Эндпоинт доступен по адресу:
+```bash
+http://localhost:8080/api/v1/calculate
+```
+## Примеры запросов
+Успешный запрос (200 OK):
+```bash
+curl --location 'http://localhost:8080/api/v1/calculate' \
+--header 'Content-Type: application/json' \
+--data '{
+  "expression": "2+2*2"
+}'
+```
+Пример ответа:
+
+```json
+{
+  "result": "6"
+}
+```
+Ошибка 422 (Unprocessable Entity):
+```bash
+curl --location 'http://localhost:8080/api/v1/calculate' \
+--header 'Content-Type: application/json' \
+--data '{
+  "expression": "2+(3*2"
+}'
+```
+Пример ответа:
+
+```json
+{
+  "error": "Expression is not valid"
+}
+```
+Ошибка 500 (Internal Server Error).
+Данный код возвращается в случае непредвиденных сбоев внутри приложения:
+
+```json
+{
+  "error": "Internal server error"
+}
