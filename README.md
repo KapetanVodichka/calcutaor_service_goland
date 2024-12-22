@@ -24,6 +24,26 @@
   "result": "6"
 }
 ```
+
+## Запуск сервиса
+Клонируйте репозиторий:
+```bash
+git clone https://github.com/username/calc_service.git
+```
+Перейдите в папку с проектом:
+```bash
+cd calc_service
+```
+
+Запустите сервис:
+```bash
+go run ./cmd/calc_service/...
+```
+По умолчанию сервер стартует на порту 8080. Эндпоинт доступен по адресу:
+```bash
+http://localhost:8080/api/v1/calculate
+```
+
 ## Возможные коды ошибок:
 422 (Unprocessable Entity)
 Если в выражении содержатся недопустимые символы, есть деление на ноль или скобки не сбалансированы.
@@ -54,24 +74,6 @@ curl --location 'http://localhost:8080/api/v1/calculate' \
 }
 ```
 
-## Запуск сервиса
-Клонируйте репозиторий:
-```bash
-git clone https://github.com/username/calc_service.git
-```
-Перейдите в папку с проектом:
-```bash
-cd calc_service
-```
-
-Запустите сервис:
-```bash
-go run ./cmd/calc_service/...
-```
-По умолчанию сервер стартует на порту 8080. Эндпоинт доступен по адресу:
-```bash
-http://localhost:8080/api/v1/calculate
-```
 ## Примеры запросов
 Успешный запрос (200 OK):
 ```bash
