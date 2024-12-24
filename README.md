@@ -117,3 +117,9 @@ curl --location 'http://localhost:8080/api/v1/calculate' \
 {
   "error": "Internal server error"
 }
+```
+## Тесты
+Для запуска тестов:
+```bash
+go test -v ./cmd/calc_service/...
+```
