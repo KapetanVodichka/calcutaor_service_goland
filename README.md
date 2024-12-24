@@ -35,6 +35,11 @@ git clone https://github.com/KapetanVodichka/calc_service_goland.git
 cd calcutaor_service_goland
 ```
 
+Скачайте необходимые зависимости:
+```bash
+go mod tidy
+```
+
 Запустите сервис:
 ```bash
 go run ./cmd/calc_service/...
